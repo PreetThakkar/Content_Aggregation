@@ -9,5 +9,5 @@ if __name__ == '__main__':
 			for key, value in result.items():
 				print("\n")
 				print(object.__class__.__name__, key)
-				print(*value, sep = "\n")
+				# print(*value, sep = "\n")
 

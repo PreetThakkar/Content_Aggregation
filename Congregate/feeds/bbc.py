@@ -26,5 +26,5 @@ class BBC:
 			links.append( (item.find('title').text, item.find('link').text) )
 		return {category: links}
 
-for cat in BBC().getAll():
-	print(cat)
+# for cat in BBC().getAll():
+# 	print(cat)

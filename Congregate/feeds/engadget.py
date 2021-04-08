@@ -16,5 +16,5 @@ class Engadget:
 	def getAll(self):
 		yield self.getLinks()
 
-for cat in Engadget().getAll():
-	print(cat)
+# for cat in Engadget().getAll():
+# 	print(cat)
