@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import re
 
 class Medium:
-	feeds = {}
+	# feeds = {}
 	feeds = {
 		"Art": "https://medium.com/feed/topic/art",
 		"Books": "https://medium.com/feed/topic/books",
@@ -41,7 +41,7 @@ class Medium:
 		"Technology": "https://medium.com/feed/topic/technology",
 	}
 
-	def getFeeds(self):
+	def get_all_rss(self):
 		# Scraping Feed links
 		response = requests.get("https://medium.com/topics")
 		soup = BeautifulSoup(response.text, 'lxml')
@@ -54,19 +54,23 @@ class Medium:
 					continue
 				self.feeds[i.string] = "https://medium.com/feed/" + i.get("href").split('.com/')[1]
 
-	def getLinks(self, category = "Programming"):
-		links = []
-		if self.feeds == {} : response = requests.get("https://medium.com/feed/topic/programming")
-		else : response = requests.get(self.feeds[category])
-		xml = ET.fromstring(response.content)
-		for item in xml.findall("./channel/item"):
-			links.append( (item.find('title').text, item.find('link').text) )
-		return {category: links}
 
 	def getAll(self):
 		# getFeeds will fetch all the feeds on Medium's website
-		# self.getFeeds()
-		for feed in self.feeds:
-			yield {feed: self.getLinks(feed)[feed]}
+		# self.get_all_rss()
+		for feed, rss in self.feeds.items():
+			links = []
+			# link structure
+			# [ (source, feed, title, url) ]
+			response = requests.get(rss)
+			xml = ET.fromstring(response.content)
+			for item in xml.findall("./channel/item"):
+				links.append( ("Medium", feed, item.find('title').text, item.find('link').text) )
+			yield links
 
-Medium().getFeeds()
+
+# Medium().getFeeds()
+# for results in Medium().getAll():
+# 	for key, value in results.items():
+# 		for i in value:
+# 			print(i[0])

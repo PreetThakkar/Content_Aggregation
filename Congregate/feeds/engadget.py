@@ -4,17 +4,14 @@ import xml.etree.ElementTree as ET
 class Engadget:
 	'''
 	This class is just one category. Gadgets.
-	'''
-	def getLinks(self):
-		response = requests.get("https://www.engadget.com/rss.xml")
-		links = []
-		xml = ET.fromstring(response.content)
-		for item in xml.findall("./channel/item"):
-			links.append( (item.find('title').text, item.find('link').text) )
-		return {"Engadget": links}
+	'''	
+	feeds = {"Engadget" : "https://www.engadget.com/rss.xml"}
 
 	def getAll(self):
-		yield self.getLinks()
-
-# for cat in Engadget().getAll():
-# 	print(cat)
+		for feed, rss in self.feeds.items():
+			response = requests.get(rss)
+			links = []
+			xml = ET.fromstring(response.content)
+			for item in xml.findall("./channel/item"):
+				links.append( ("Engadget", "Engadget", item.find('title').text, item.find('link').text) )
+			yield links

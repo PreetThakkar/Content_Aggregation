@@ -12,19 +12,18 @@ class BBC:
 		"Science Environment" : "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
 		"Technology" : "http://feeds.bbci.co.uk/news/technology/rss.xml",
 		"Entertainment Arts" : "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
-	}
+	}		
 
 	def getAll(self):
-		for feed in self.feeds:
-			yield self.getLinks(feed)
-
-	def getLinks(self, category = "Technology"):
-		response = requests.get(self.feeds[category])
-		links = []
-		xml = ET.fromstring(response.content)
-		for item in xml.findall("./channel/item"):
-			links.append( (item.find('title').text, item.find('link').text) )
-		return {category: links}
+		for feed, rss in self.feeds.items():
+			response = requests.get(rss)
+			links = []
+			# link structure
+			# [ (feed, title, url) ]
+			xml = ET.fromstring(response.content)
+			for item in xml.findall("./channel/item"):
+				links.append( ("BBC", feed, item.find('title').text, item.find('link').text) )
+			yield links
 
 # for cat in BBC().getAll():
 # 	print(cat)
