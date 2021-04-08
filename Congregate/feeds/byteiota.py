@@ -15,12 +15,8 @@ class Byteiota:
 	def getAll(self):
 		self.get_feeds()
 		for feed, link in self.feeds.items():
-			links, temp = [], []
 			response = requests.get(link)
 			soup = BeautifulSoup(response.content, "lxml")
 			for h in soup.find_all('h3', attrs = {'class': 'post__title typescale-2'}):
 				x = h.find('a')
-				temp.append( ("Byteiota", feed, x.string, x.get('href')) )
-			if temp == []: links.append( ("Byteiota", feed, feed, link) )
-			else: links.extend(temp)
-			yield links
+				yield ("Byteiota", feed, x.string, x.get('href')) 

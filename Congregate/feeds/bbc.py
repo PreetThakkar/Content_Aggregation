@@ -22,8 +22,7 @@ class BBC:
 			# [ (feed, title, url) ]
 			xml = ET.fromstring(response.content)
 			for item in xml.findall("./channel/item"):
-				links.append( ("BBC", feed, item.find('title').text, item.find('link').text) )
-			yield links
+				yield ("BBC", feed, item.find('title').text, item.find('link').text)
 
 # for cat in BBC().getAll():
 # 	print(cat)

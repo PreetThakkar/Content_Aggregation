@@ -59,14 +59,10 @@ class Medium:
 		# getFeeds will fetch all the feeds on Medium's website
 		# self.get_all_rss()
 		for feed, rss in self.feeds.items():
-			links = []
-			# link structure
-			# [ (source, feed, title, url) ]
 			response = requests.get(rss)
 			xml = ET.fromstring(response.content)
 			for item in xml.findall("./channel/item"):
-				links.append( ("Medium", feed, item.find('title').text, item.find('link').text) )
-			yield links
+				yield ("Medium", feed, item.find('title').text, item.find('link').text)
 
 
 # Medium().getFeeds()

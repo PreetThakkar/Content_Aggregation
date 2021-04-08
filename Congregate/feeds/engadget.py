@@ -10,8 +10,6 @@ class Engadget:
 	def getAll(self):
 		for feed, rss in self.feeds.items():
 			response = requests.get(rss)
-			links = []
 			xml = ET.fromstring(response.content)
 			for item in xml.findall("./channel/item"):
-				links.append( ("Engadget", "Engadget", item.find('title').text, item.find('link').text) )
-			yield links
+				yield ("Engadget", "Engadget", item.find('title').text, item.find('link').text)
