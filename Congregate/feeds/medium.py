@@ -6,21 +6,6 @@ import re
 class Medium:
 	# feeds = {}
 	feeds = {
-		"Art": "https://medium.com/feed/topic/art",
-		"Books": "https://medium.com/feed/topic/books",
-		"Gaming": "https://medium.com/feed/topic/gaming",
-		"Podcasts": "https://medium.com/feed/topic/podcasts",
-		"Fitness": "https://medium.com/feed/topic/fitness",
-		"Health": "https://medium.com/feed/topic/health",
-		"Business": "https://medium.com/feed/topic/business",
-		"Design": "https://medium.com/feed/topic/design",
-		"Freelancing": "https://medium.com/feed/topic/freelancing",
-		"Product Management": "https://medium.com/feed/topic/product-management",
-		"Remote Work": "https://medium.com/feed/topic/remote-work",
-		"Startups": "https://medium.com/feed/topic/startups",
-		"Creativity" :"https://medium.com/feed/topic/creativity",
-		"Mindfulness": "https://medium.com/feed/topic/mindfulness",
-		"Productivity": "https://medium.com/feed/topic/productivity",
 		"Android Dev": "https://medium.com/feed/topic/android-development",
 		"Data Science": "https://medium.com/feed/topic/data-science",
 		"iOS Dev": "https://medium.com/feed/topic/ios-development",
@@ -28,16 +13,8 @@ class Medium:
 		"Machine Learning": "https://medium.com/feed/topic/machine-learning",
 		"Programming": "https://medium.com/feed/topic/programming",
 		"Software Engineering": "https://medium.com/feed/topic/software-engineering",
-		"Social Media": "https://medium.com/feed/topic/social-media",
-		"World": "https://medium.com/feed/topic/world",
 		"Artificial Intelligence": "https://medium.com/feed/topic/artificial-intelligence",
-		"Blockchain": "https://medium.com/feed/topic/blockchain",
-		"Cryptocurrency": "https://medium.com/feed/topic/cryptocurrency",
 		"Cybersecurity": "https://medium.com/feed/topic/cybersecurity",
-		"Digital Life": "https://medium.com/feed/topic/digital-life",
-		"Gadgets": "https://medium.com/feed/topic/gadgets",
-		"Privacy": "https://medium.com/feed/topic/privacy",
-		"Self-Driving Cars": "https://medium.com/feed/topic/self-driving-cars",
 		"Technology": "https://medium.com/feed/topic/technology",
 	}
 
