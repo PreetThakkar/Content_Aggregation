@@ -3,16 +3,21 @@ import requests
 
 class BBC:
 	feeds = {
-		"Top" : "http://feeds.bbci.co.uk/news/rss.xml",
-		"World" : "http://feeds.bbci.co.uk/news/world/rss.xml",
-		"Business" : "http://feeds.bbci.co.uk/news/business/rss.xml",
-		"Politics" : "http://feeds.bbci.co.uk/news/politics/rss.xml",
-		"Health" : "http://feeds.bbci.co.uk/news/health/rss.xml",
 		"Education Health" : "http://feeds.bbci.co.uk/news/education/rss.xml",
 		"Science Environment" : "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml",
 		"Technology" : "http://feeds.bbci.co.uk/news/technology/rss.xml",
-		"Entertainment Arts" : "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
 	}		
+
+# "Top Stories" : "http://feeds.bbci.co.uk/news/rss.xml"
+# "World" : "http://feeds.bbci.co.uk/news/world/rss.xml"
+# "UK" : "http://feeds.bbci.co.uk/news/uk/rss.xml"
+# "Business" : "http://feeds.bbci.co.uk/news/business/rss.xml"
+# "Politics" : "http://feeds.bbci.co.uk/news/politics/rss.xml"
+# "Health" : "http://feeds.bbci.co.uk/news/health/rss.xml"
+# "Education & Family" : "http://feeds.bbci.co.uk/news/education/rss.xml"
+# "Science & Environment" : "http://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+# "Technology" : "http://feeds.bbci.co.uk/news/technology/rss.xml"
+# "Entertainment & Arts" : "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"
 
 	def getAll(self):
 		for feed, rss in self.feeds.items():
