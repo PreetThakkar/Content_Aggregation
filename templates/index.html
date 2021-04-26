@@ -11,39 +11,42 @@
     <title>Congregate</title>
   </head>
   <body style="padding-top: 4rem">
-    {% include "navbar.html" %}
-    {% for source, cats in sources.items %}
-    <div id="{{ source }}">
-      <h1 style="text-align: center;">{{ source }}</h1>
-      {% for cat in cats %}  
-        <h3 id="{{ source }} - {{ cat }}">{{ cat }}</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Source</th>
-              <th scope="col">Category</th>
-              <th scope="col">Content</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for s, c, title, link in data %}
-              {% if source == s and cat == c %}
-              <tr>
-                <th scope="row">{{ source }}</th>
-                <td>{{ cat }}</td>
-                <td> <a href = "{{ link }}"> {{ title }} </a></td>
-              </tr>
-              {% endif %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Congragate Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for source, cats in sources.items %}
+            {% for cat in cats %}
+              <li class="nav-item active">
+                <a class="nav-link" href="#{{ cat }}">{{ cat }}</a>
+              </li>
             {% endfor %}
-          </tbody>
-        </table>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div style="width: 50%; margin: 0 auto;">
+    {% for source, cats in sources.items %}
+      <div class="p-2" style="margin-left: 40%;"><h1>{{ source }}</h1></div>
+      {% for cat in cats%}
+        <div class="p-2" id="{{ cat }}"><h3>{{ cat }}</h3></div>
+        <ul class="list-group list-group-flush p-2">
+        {% for s, c, title, link in data %}
+          {% if source == s and cat == c %}
+            <li class="list-group-item"> 
+              <a href = "{{ link }}"> {{ title }} </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
       {% endfor %}
-    </div>
     {% endfor %}
-    <ul>
-    
-    </ul>
-
+    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
