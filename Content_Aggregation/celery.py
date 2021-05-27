@@ -20,3 +20,23 @@ app.autodiscover_tasks()
 @app.task(bind=True)
 def debug_task(self):
     print(f'Request: {self.request!r}')
+
+app.conf.beat_schedule = {
+    # #Scheduler Name
+    # 'fetch_the_news': {
+    #     # Task Name (Name Specified in Decorator)
+    #     'task': 'fetch_news',  
+    #     # Schedule      
+    #     'schedule': 600,
+    #     # Function Arguments 
+    #     # 'args': ("Hello",) 
+    # },
+    'test_the_celery': {
+        # Task Name (Name Specified in Decorator)
+        'task': 'test_celery',  
+        # Schedule      
+        'schedule': 10,
+        # Function Arguments 
+        # 'args': ("Hello",) 
+    }
+}  
