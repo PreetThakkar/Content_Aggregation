@@ -16,3 +16,8 @@ For the respective libraries, the following commands are to be initiated -
 - 'celery -A Content_Aggregation beat -l info'
 - 'Redis-x64-3.0.504\\redis-server.exe'
 - 'celery -A Content_Aggregation worker -l info -P eventlet'
+
+### Basic Front-end
+Home
+![Homepage.png](/static/After%201.png "Homepage")
+![Source Page.png](/static/After%202.png "Source Page")
