@@ -17,14 +17,14 @@ class Byteiota:
 		for feed, link in self.feeds.items():
 			response = requests.get(link)
 			soup = BeautifulSoup(response.content, "lxml")
-			for h in soup.find_all('h3'):
-				if h.attrs['class'] == ['post__title', 'typescale-2'] or h.attrs['class'] == ['post__title', 'typescale-3']:
-					x = h.find('a')	
-					yield ("Byteiota", feed, x.string, x.get('href')) 
+			for h in soup.find_all('h3', {'class': ['post__title typescale-2', 'post__title typescale-3' ]} ):
+				x = h.find('a')	
+				yield ("Byteiota", feed, x.string, x.get('href')) 
 
 # if __name__ == '__main__':
-# 	# byte = Byteiota()
-# 	# byte.get_feeds()
-# 	# print(*byte.feeds.items(), sep = '\n')
-# 	for i in Byteiota().getAll():
-# 		print(i)
+# 	byte = Byteiota()
+# 	byte.get_feeds()
+# 	print(*byte.feeds.items(), sep = '\n')
+# 	# for i in Byteiota().getAll():
+# 	# 	print(i)
+	
