@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('', views.redirect_home, name = "redirect_home"),
     path('home/', views.home, name = "home"),
-    path('source/<str:s>/#<str:c>', views.home_cat, name = "particular"),
-    path('source/<str:s>', views.home_all, name = "main"),
-    # path('store/', views.store, name = "store"),
+    path('home/<str:source>', views.home, name = "main"),
+    path('home/<str:source>/#<str:cat>', views.home, name = "particular"),
 ]

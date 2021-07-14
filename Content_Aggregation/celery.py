@@ -7,15 +7,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Content_Aggregation.settings')
 
 app = Celery('Content_Aggregation')
 
-# Using a string here means the worker doesn't have to serialize
-# the configuration object to child processes.
-# - namespace='CELERY' means all celery-related configuration keys
-#   should have a `CELERY_` prefix.
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
 # Load task modules from all registered Django app configs.
 app.autodiscover_tasks()
-
 
 @app.task(bind=True)
 def debug_task(self):
@@ -24,9 +19,7 @@ def debug_task(self):
 app.conf.beat_schedule = {
     #Scheduler Name
     'fetch_the_news': {
-        # Task Name (Name Specified in Decorator)
-        'task': 'fetch_news',  
-        # Schedule      
-        'schedule': 300,
+        'task': 'fetch_news', # Task Name (Name Specified in Decorator)
+        'schedule': 1800,
     },
 }  
