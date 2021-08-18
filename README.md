@@ -21,4 +21,4 @@ For the respective libraries, the following commands are to be initiated -
 Home
 ![Homepage.png](/static/After%201.png "Homepage")
 ![Source Page.png](/static/After%202.png "Source Page")
-![Final Theme.png](/static/After%203.png "Home Page")
+![Final Theme.png](/static/Theme%203.png "Home Page")

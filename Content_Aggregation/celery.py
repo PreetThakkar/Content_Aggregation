@@ -20,6 +20,6 @@ app.conf.beat_schedule = {
     #Scheduler Name
     'fetch_the_news': {
         'task': 'fetch_news', # Task Name (Name Specified in Decorator)
-        'schedule': 300,
+        'schedule': 1800,
     },
 }  
