@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.87.0">
+  <title>Congregate</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+  <!-- Bootstrap core CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'sidebars.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="home" viewBox="0 0 16 16">
+      <path
+        d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+    </symbol>
+    <symbol id="grid" viewBox="0 0 16 16">
+      <path
+        d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+    </symbol>
+  </svg>
+
+  <main>
+      <div class="b-example-divider" style="width: 250px;"></div>
+      <div class="flex-shrink-0 p-3 bg-white example" style="width: 280px; border-style: none groove none solid; overflow-y: auto;">
+        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom ">
+          <svg class="bi me-2" width="30" height="24">
+            <use xlink:href="#home" />
+          </svg>
+          <span class="fs-5 fw-semibold">Congregate</span>
+        </a>
+        <ul class="list-unstyled ps-0">
+          {% for source, cats in sources.items %}
+          {% if source == current %}
+          <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#{{ source }}-collapse" aria-expanded="true">
+              {{ source }}
+            </button>
+            <div class="collapse show" id="{{source}}-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                {% for cat in cats %}
+                <li><a href="{{ source }}#{{ cat }}" class="link-dark rounded">{{ cat }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+          {% else %}
+          <li class="mb-1">
+            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#{{ source }}-collapse" aria-expanded="false">
+              {{ source }}
+            </button>
+            <div class="collapse" id="{{ source }}-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                {% for cat in cats %}
+                <li><a href="{{ source }}#{{ cat }}" class="link-dark rounded">{{ cat }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="b-example-divider"></div>
+      <div class="flex-column align-items-stretch flex-shrink-0 bg-white example" style="width: 50%; overflow-y: auto; border-style: none solid none groove;">
+        {% for cat in cats %}
+        <a class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none border-bottom card-header" id="{{ cat }}">
+          <svg class="bi me-2" width="30" height="24">
+            <use xlink:href="#grid" />
+          </svg>
+          <span class="fs-5 fw-semibold">{{ cat }}</span>
+        </a>
+        <div class="list-group list-group-flush border-bottom">
+          {% for src, c, title, link in data %}
+          {% if cat == c %}
+          <a href="{{ link }}" target="_blank" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+              <strong class="mb-1">{{ title }}</strong>
+              <!-- <small>Wed</small> -->
+            </div>
+            <!-- <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div> -->
+          </a>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+      <div class="b-example-divider" style="width: 214px;"></div>
+  </main>
+
+  <script src="{% static 'sidebars.js' %}"></script>
+</body>
+
+</html>

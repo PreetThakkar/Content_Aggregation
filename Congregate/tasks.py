@@ -1,5 +1,5 @@
 from celery import shared_task
-from .feeds import * 
+from .feeds import get_articles as feed
 import csv
 import shutil
 import os
@@ -8,7 +8,8 @@ import os
 def storee():
 	with open('temp.csv', 'w', encoding='utf-8', newline='') as f:
 		writer = csv.writer(f)
-		objects = [byteiota.Byteiota(), bbc.BBC(), engadget.Engadget(), medium.Medium()]
+		objects = [feed.Byteiota(), feed.BBC(), feed.Engadget(), feed.Medium()]
+		# objects = [feed.BBC()]
 		data = []
 		for object in objects:
 			for result in object.getAll():

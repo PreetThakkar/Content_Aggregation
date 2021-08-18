@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from .feeds import *
 from .models import *
-from django.http import HttpResponse
 from .tasks import *
 import csv
-from collections import defaultdict
 import shutil
+import random
 
 # Create your views here.
 def redirect_home(request):
@@ -17,37 +15,27 @@ def home(request, source='', cat=''):
 	Rename it to data_old.csv 
 	If not then fetch from data.old.csv
 	'''
-	data = []
+	# data = List of tuples. tuple -> (source, category, title, link)
+	dataAll = []
+	# sources = dict( { source: list of categories for that source } )
 	sources = {}
-	cat_count = defaultdict(int)
 	try:
 		f = open("data_new.csv", 'r', encoding='utf-8')
 	except Exception as e:
 		f = open("data_old.csv", 'r', encoding='utf-8')
 	reader = csv.reader(f)
-	for row in reader:
-		current = " - ".join([row[0], row[1]])
-		if source:
-			if row[0] == source:
-				data.append(row)
-				if row[0] not in sources.keys():
-					sources[row[0]] = []
-				if row[1] not in sources[row[0]]:
-					sources[row[0]].append(row[1])
-		else:
-			if cat_count[current] == 0:
-				if row[0] not in sources.keys():
-					sources[row[0]] = []
-				if row[1] not in sources[row[0]]:
-					sources[row[0]].append(row[1])
-			if cat_count[current] < 5:
-				data.append(row)
-				cat_count[current] += 1
 	name = f.name
+	for row in reader:
+		dataAll.append(row)
+		if row[0] not in sources.keys():
+			sources[row[0]] = []
+		if row[1] not in sources[row[0]]:
+			sources[row[0]].append(row[1])
+	if source == '':
+		current = random.choice(list(sources.keys()))
+	else: current = source
+	cats = sources[current]
+	data = [row for row in dataAll if row[0] == current]
 	f.close()
-	if name == "data_new.csv":
-		shutil.move(name, "data_old.csv")
-	if source:
-		return render(request, 'index.html', context = {'data': data, 'sources': sources, 'rang': range(5)})
-	else:
-		return render(request, 'flex-index.html', context = {'data': data, 'sources': sources, 'rang': range(5)})
+	if name == "data_new.csv": shutil.move(name, "data_old.csv")
+	return render(request, 'sidebar-index.html', context = {'current': current, 'cats': cats, 'data': data, 'sources': sources})
