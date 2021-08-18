@@ -9,7 +9,6 @@ def storee():
 	with open('temp.csv', 'w', encoding='utf-8', newline='') as f:
 		writer = csv.writer(f)
 		objects = [feed.Byteiota(), feed.BBC(), feed.Engadget(), feed.Medium()]
-		# objects = [feed.BBC()]
 		data = []
 		for object in objects:
 			for result in object.getAll():

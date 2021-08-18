@@ -19,9 +19,3 @@ For the respective libraries, the following commands are to be initiated -
 
 ### Final UI
 ![Final Theme.png](/static/Theme%203.png "Home Page")
-
-### Basic Front-end
-Home
-![Homepage.png](/static/After%201.png "Homepage")
-Source Page
-![Source Page.png](/static/After%202.png "Source Page")

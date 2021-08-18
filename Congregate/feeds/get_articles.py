@@ -13,7 +13,6 @@ class Scrapp:
     @staticmethod
     def getXmlTree(rss: str) -> ET.Element:
         response = requests.get(rss)
-        print(response.status_code)
         return ET.fromstring(response.text)
 
 
@@ -86,6 +85,6 @@ class Medium:
             for item in xml.findall("./channel/item"):
                 yield ("Medium", feed, item.find('title').text, item.find('link').text)
 
-if __name__ == '__main__':
-    for item in BBC().getAll():
-        print(item)
+# if __name__ == '__main__':
+#     for item in BBC().getAll():
+#         print(item)
